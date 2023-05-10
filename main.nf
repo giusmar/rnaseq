@@ -9,7 +9,7 @@ include { align } from './modules/align'
 
 // check
 if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { exit 1, 'Input samplesheet not specified!' }
-if (params.genomedir) { genomedir_ch = dir(params.genomedir, checkIfExists: true) } else { exit 1, 'STAR Genome Directory not specified!' }
+if (params.genomedir) { genomedir_ch = file(params.genomedir, checkIfExists: true) } else { exit 1, 'STAR Genome Directory not specified!' }
 if (params.gtf) { gtf_ch = file(params.gtf, checkIfExists: true) } else { exit 1, 'GTF not specified!' }
 
 inputPairReads = Channel.fromPath(input_ch)
