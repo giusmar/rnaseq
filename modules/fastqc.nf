@@ -1,8 +1,7 @@
 process fastqc {
     debug true
-    machineType 'n1-standard-2'
     tag "FastQC"
-    label "fastqc"
+    label "test"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
            if (filename.indexOf("html") > 0)              "fastqc/$filename"
@@ -14,13 +13,11 @@ process fastqc {
     tuple val(sample_id), path(read1), path(read2), val(strand)
 
     output:
-    tuple val(projects_name), path("*_fastqc.{zip,html}"), emit: fastqc_resutl
+    path("*_fastqc.{zip,html}"), emit: fastqc_resutl
 
     script:
 	"""
-    fastqc --quiet ${reads}/* --outdir .
+    echo $read1
+    echo $read2
 	"""
-
-
-
 }

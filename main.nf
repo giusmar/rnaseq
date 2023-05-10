@@ -14,7 +14,6 @@ inputPairReads = Channel.fromPath(input_ch)
                             .splitCsv( header:false, sep:',' )
                             .map( { row -> [sample_id = row[0], fastq1 = row[1], fastq2 = row[2], strand = row[3]] } )
 
-workflow {    
-    inputPairReads.view()
-    inputPairReads.groupTuple(by: [3], sort: 'true').view()
+workflow {
+    fastqc(inputPairReads.groupTuple(by: [3], sort: 'true'))
 }
