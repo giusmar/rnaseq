@@ -20,6 +20,7 @@ process align {
 
     script:
 	"""
-    echo "fatto"
+    ls -l $gtf
+    ls -l $genDir
 	"""
 }
