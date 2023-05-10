@@ -28,5 +28,5 @@ workflow {
     trimming(umi_extract.out.umi_extract_resutl)
     align(trimming.out.trimming_result,genDir.collect(),genomefile.collect(),gtfile.collect())
     umi_dedup(align.out.align_sorted_result)
-    count(umi_dedup.out.umi_dedup_result.collect())
+    count(umi_dedup.out.umi_dedup_result.collect(),gtfile)
 }

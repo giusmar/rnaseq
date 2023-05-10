@@ -11,6 +11,7 @@ process count {
 
     input:
     tuple val(sample_id), path(umi_dedup_bam)
+    path(gtf)
 
     output:
     path("counts.umi_dedup.txt"), emit: counts
