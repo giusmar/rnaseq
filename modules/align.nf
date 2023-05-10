@@ -31,8 +31,8 @@ process align {
         --outSAMattrRGline ID:${sample_id} 'SM:${sample_id}' \
         --quantMode GeneCounts --twopassMode Basic \
         --outSAMtype BAM Unsorted --readFilesCommand zcat \
-        --runRNGseed 0 --outFilterMultimapNmax 20 
-        --alignSJDBoverhangMin 1 --outSAMattributes NH HI AS NM MD 
+        --runRNGseed 0 --outFilterMultimapNmax 20 \
+        --alignSJDBoverhangMin 1 --outSAMattributes NH HI AS NM MD \
         --quantTranscriptomeBan singleend --outSAMstrandField introMotif
 
     samtools sort -@ 15 -o ${sample_id}.sorted.bam -T ${sample_id}.sorted ${sample_id}.Aligned.out.bam
