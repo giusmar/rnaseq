@@ -11,7 +11,7 @@ include { fastqc } from './modules/fastqc'
 if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { exit 1, 'Input samplesheet not specified!' }
 
 inputPairReads = Channel.fromPath(input_ch)
-                            .splitCsv( header:true, sep:',' )
+                            .splitCsv( header:false, sep:',' )
                             .map( { row -> [sample_id = row[0], fastq1 = row[1], fastq2 = row[2], strand = row[3]] } )
 
 workflow {    
