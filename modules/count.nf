@@ -1,7 +1,7 @@
 process count {
     debug true
     machineType 'e2-standard-4'
-    container 'biocontainers/subread:2.0.1--hed695b0_0'
+    container 'biocontainers/subread:v1.6.3dfsg-1-deb_cv'
     tag "count"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
