@@ -10,7 +10,7 @@ process count {
     }
 
     input:
-    tuple val(sample_id), path(umi_dedup_bam)
+    path(umi_dedup_bams)
     path(gtf)
 
     output:
@@ -20,6 +20,6 @@ process count {
 
     script:
 	"""
-    featureCounts -T 4 -s 1 -p -a $gtf -o counts.umi_dedup.txt $umi_dedup_bam 2> counts.umi_dedup.log
+    featureCounts -T 4 -s 1 -p -a $gtf -o counts.umi_dedup.txt $umi_dedup_bams 2> counts.umi_dedup.log
 	"""
 }
