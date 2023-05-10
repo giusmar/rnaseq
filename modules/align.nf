@@ -5,8 +5,8 @@ process align {
     tag "align"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
-           if (filename.indexOf("_extract_") > 0)              "umi_extract/fastq/$filename"
-      else if (filename.indexOf("log") > 0)               "umi_extract/logs/$filename"
+           if (filename.indexOf("*.{bam,bam.bai}") > 0)              "STAR/align/$filename"
+      else if (filename.indexOf("*stat*") > 0)               "STAR/stat/$filename"
       else null
     }
 
@@ -15,8 +15,8 @@ process align {
     path(genDir)
     path(gtf)
 
-    output:
-    tuple val(sample_id), path("*bam"), path("*bam.bai"), emit: align_result
+    //output:
+    //tuple val(sample_id), path("*bam"), path("*bam.bai"), emit: align_result
 
     script:
 	"""
