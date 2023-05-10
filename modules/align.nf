@@ -12,6 +12,8 @@ process align {
 
     input:
     tuple val(sample_id), path(trimmed_1), path(trimmed_2)
+    path(genDir)
+    path(gtf)
 
     output:
     tuple val(sample_id), path("*bam"), path("*bam.bai"), emit: align_result
