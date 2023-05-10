@@ -3,7 +3,6 @@ process fastqc {
     machineType 'e2-standard-4'
     container 'quay.io/biocontainers/fastqc:0.11.9--0'
     tag "FastQC"
-    label "test"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
            if (filename.indexOf("html") > 0)              "fastqc/$filename"

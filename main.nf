@@ -2,7 +2,7 @@ nextflow.enable.dsl=2
 
 //modules
 include { fastqc } from './modules/fastqc'
-//include { umi_extract } from './modules/umi_extract'
+include { umi_extract } from './modules/umi_extract'
 //include { trimming } from './modules/trimming'
 //include { align } from './modules/align'
 //include { umi_dedup } from './modules/umi_dedup'
@@ -16,4 +16,5 @@ inputPairReads = Channel.fromPath(input_ch)
 
 workflow {
     fastqc(inputPairReads.groupTuple(by: [3], sort: 'true'))
+    umi_extract(inputPairReads)
 }
