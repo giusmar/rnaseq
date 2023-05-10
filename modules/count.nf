@@ -14,8 +14,8 @@ process count {
     path(gtf)
 
     output:
-    path("counts.umi_dedup.txt"), emit: counts
-    path("counts.umi_dedup.log"), emit: counts_log
+    path("*txt"), emit: counts
+    path("*log"), emit: counts_log
 
 
     script:
