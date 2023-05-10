@@ -9,6 +9,7 @@ include { align } from './modules/align'
 
 // check
 if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { exit 1, 'Input samplesheet not specified!' }
+if (params.genome) { genome_ch = file(params.genome, checkIfExists: true) } else { exit 1, 'Genome fasta not specified!' }
 if (params.genomedir) { genomedir_ch = file(params.genomedir, checkIfExists: true) } else { exit 1, 'STAR Genome Directory not specified!' }
 if (params.gtf) { gtf_ch = file(params.gtf, checkIfExists: true) } else { exit 1, 'GTF not specified!' }
 
@@ -18,10 +19,11 @@ inputPairReads = Channel.fromPath(input_ch)
 genDir = Channel.fromPath(genomedir_ch)
                     .collect()
 gtfile = Channel.fromPath(gtf_ch)
+genomefile = Channel.fromPath(genome_ch)
 
 workflow {
     fastqc(inputPairReads)
     umi_extract(inputPairReads)
     trimming(umi_extract.out.umi_extract_resutl)
-    align(genDir.collect(),gtfile)
+    align(trimming.out.trimming_result,genDir.collect(),genomefile,gtfile)
 }
