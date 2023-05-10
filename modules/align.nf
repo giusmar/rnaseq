@@ -29,7 +29,7 @@ process align {
         --outFileNamePrefix ${sample_id}. \
         --sjdbGTFfile $gtf \
         --outSAMattrRGline ID:${sample_id} 'SM:${sample_id}' \
-        --quantMode GeneCounts --twopassMode basic \
+        --quantMode GeneCounts --twopassMode Basic \
         --outSAMtype BAM Unsorted --readFilesCommand zcat \
         --runRNGseed 0 --outFilterMultimapNmax 20 
         --alignSJDBoverhangMin 1 --outSAMattributes NH HI AS NM MD 
