@@ -1,7 +1,7 @@
 process count {
     debug true
     machineType 'e2-standard-4'
-    container 'quay.io/biocontainers/umi_tools:1.1.4--py38hbff2b2d_1'
+    container 'biocontainers/subread:2.0.1--hed695b0_0'
     tag "count"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
@@ -14,8 +14,8 @@ process count {
     path(gtf)
 
     output:
-    path("*txt"), emit: counts
-    path("*log"), emit: counts_log
+    path("counts.umi_dedup.txt"), emit: counts
+    path("counts.umi_dedup.log"), emit: counts_log
 
 
     script:
