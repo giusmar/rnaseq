@@ -6,7 +6,8 @@ process trimming {
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
            if (filename.indexOf("gz") > 0)              "trimming/fastq/$filename"
-      else if (filename.indexOf(".{html,zip}") > 0)              "trimming/fastqc/$filename"
+      else if (filename.indexOf("html") > 0)              "trimming/fastqc/$filename"
+      else if (filename.indexOf("zip") > 0)              "trimming/fastqc/$filename"
       else null
     }
 
