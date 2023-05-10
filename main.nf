@@ -9,17 +9,19 @@ include { trimming } from './modules/trimming'
 
 // check
 if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { exit 1, 'Input samplesheet not specified!' }
-if (params.genomedir) { genomedir_ch = file(params.genomedir, checkIfExists: true) } else { exit 1, 'STAR Genome Directory not specified!' }
+if (params.genomedir) { genomedir_ch = dir(params.genomedir, checkIfExists: true) } else { exit 1, 'STAR Genome Directory not specified!' }
+if (params.gtf) { gtf_ch = file(params.gtf, checkIfExists: true) } else { exit 1, 'GTF not specified!' }
 
 inputPairReads = Channel.fromPath(input_ch)
                             .splitCsv( header:false, sep:',' )
                             .map( { row -> [sample_id = row[0], fastq1 = row[1], fastq2 = row[2], strand = row[3]] } )
 genDir = Channel.fromPath(genomedir_ch)
                     .collect()
+gtfile = Channel.fromPath(gtfile)
 
 workflow {
     fastqc(inputPairReads)
     umi_extract(inputPairReads)
     trimming(umi_extract.out.umi_extract_resutl)
-    align(genomedir.collect())
+    align(trimming.out.trimming_resutl,genomedir.collect(),gtfile)
 }
