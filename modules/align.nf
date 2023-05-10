@@ -5,8 +5,8 @@ process align {
     tag "align"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
-           if (filename.indexOf("sorted.bam") > 0)              "STAR/align/$filename"
-      else if (filename.indexOf("sorted.bam.bai") > 0)               "STAR/stat/$filename"
+           if (filename.endsWith("sorted.bam"))              "STAR/align/$filename"
+      else if (filename.endsWith("sorted.bam.bai"))               "STAR/stat/$filename"
       else if (filename.indexOf("stat") > 0)               "STAR/stat/$filename"
       else null
     }
@@ -19,7 +19,7 @@ process align {
 
     output:
     tuple val(sample_id), path("*bam"), path("*bam.bai"), emit: align_result
-    tuple val(sample_id), path("*stat"), emit: align_stat_result
+    tuple val(sample_id), path("*stat*"), emit: align_stat_result
 
     script:
 	"""
