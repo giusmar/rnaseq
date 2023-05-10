@@ -21,7 +21,7 @@ process trimming {
     ln -s $extract_1 ${sample_id}_1.fastq.gz
     ln -s $extract_1 ${sample_id}_2.fastq.gz
     trim_galore \
-        --fastq_args "-t 8" \
+        --fastqc_args '-t 8' \
         --cores 8 \
         --paired \
         --gzip \
