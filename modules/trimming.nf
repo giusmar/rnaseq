@@ -14,7 +14,7 @@ process trimming {
     tuple val(sample_id), path(extract_1), path(extract_2)
 
     output:
-    tuple val(sample_id), path("*1_val_1*"), path("*2_val_2*"), emit: trimming_resutl
+    tuple val(sample_id), path("*1_val_1*"), path("*2_val_2*"), emit: trimming_result
 
     script:
 	"""
