@@ -4,7 +4,7 @@ nextflow.enable.dsl=2
 include { fastqc } from './modules/fastqc'
 include { umi_extract } from './modules/umi_extract'
 include { trimming } from './modules/trimming'
-//include { align } from './modules/align'
+include { align } from './modules/align'
 //include { umi_dedup } from './modules/umi_dedup'
 
 // check
