@@ -1,7 +1,7 @@
 process count {
     debug true
     machineType 'e2-standard-4'
-    container '	quay.io/biocontainers/umi_tools:1.1.4--py38hbff2b2d_1'
+    container 'quay.io/biocontainers/umi_tools:1.1.4--py38hbff2b2d_1'
     tag "count"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
