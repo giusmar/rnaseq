@@ -1,6 +1,7 @@
 process count {
     debug true
-    machineType 'e2-standard-4'
+    machineType 'e2-standard-16'
+    disk '30 GB'
     container 'biocontainers/subread:v1.6.3dfsg-1-deb_cv'
     tag "count"
     publishDir "${params.outdir}", mode: 'copy',
@@ -20,6 +21,6 @@ process count {
 
     script:
 	"""
-    featureCounts -T 4 -s 1 -p -a $gtf -o counts.umi_dedup.txt $umi_dedup_bams 2> counts.umi_dedup.log
+    featureCounts -T 15 -s 1 -p -a $gtf -o counts.umi_dedup.txt $umi_dedup_bams 2> counts.umi_dedup.log
 	"""
 }
