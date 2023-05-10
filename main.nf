@@ -23,5 +23,5 @@ workflow {
     fastqc(inputPairReads)
     umi_extract(inputPairReads)
     trimming(umi_extract.out.umi_extract_resutl)
-    align(trimming.out.trimming_resutl,genomedir.collect(),gtfile)
+    align(genomedir.collect(),gtfile)
 }
