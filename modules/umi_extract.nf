@@ -5,8 +5,8 @@ process umi_extract {
     tag "umi_extract"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
-           if (filename.indexOf("_extract_") > 0)              "umi_extract/fastq/$filename"
-      else if (filename.endsWith("log"))               "umi_extract/logs/$filename"
+           if (filename.indexOf("_extract_") > 0)              "umi/extract/fastq/$filename"
+      else if (filename.endsWith("log"))               "umi/extract/logs/$filename"
       else null
     }
 
