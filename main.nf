@@ -1,12 +1,11 @@
 nextflow.enable.dsl=2
 
 //modules
-include { foo } from './modules/foo'
 include { fastqc } from './modules/fastqc'
-include { umi_extract } from './modules/umi_extract'
-include { trimming } from './modules/trimming'
-include { align } from './modules/align'
-include { umi_dedup } from './modules/umi_dedup'
+//include { umi_extract } from './modules/umi_extract'
+//include { trimming } from './modules/trimming'
+//include { align } from './modules/align'
+//include { umi_dedup } from './modules/umi_dedup'
 
 // check
 if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { exit 1, 'Input samplesheet not specified!' }
