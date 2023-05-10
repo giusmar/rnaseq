@@ -1,8 +1,7 @@
 process count {
     debug true
     machineType 'e2-standard-16'
-    disk '30 GB'
-    container 'biocontainers/subread:v1.6.3dfsg-1-deb_cv'
+    container 'genomicpariscentre/subread:latest'
     tag "count"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
