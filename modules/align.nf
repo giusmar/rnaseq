@@ -33,7 +33,7 @@ process align {
         --outSAMtype BAM Unsorted --readFilesCommand zcat \
         --runRNGseed 0 --outFilterMultimapNmax 20 \
         --alignSJDBoverhangMin 1 --outSAMattributes NH HI AS NM MD \
-        --quantTranscriptomeBan singleend --outSAMstrandField introMotif
+        --quantTranscriptomeBan singleend --outSAMstrandField intronMotif
 
     samtools sort -@ 15 -o ${sample_id}.sorted.bam -T ${sample_id}.sorted ${sample_id}.Aligned.out.bam
     samtools index -@ 15 ${sample_id}.sorted.bam
