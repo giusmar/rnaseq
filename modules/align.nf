@@ -24,7 +24,7 @@ process align {
 	"""
     STAR \
         --genomeDir $genDir \
-        --readFileIn $trimmed_1 $trimmed_2 \
+        --readFilesIn $trimmed_1 $trimmed_2 \
         --runThreadN 15 \
         --outFileNamePrefix ${sample_id}. \
         --sjdbGTFfile $gtf \
