@@ -1,5 +1,7 @@
 process fastqc {
     debug true
+    machineType 'e2-standard-4'
+    container 'quay.io/biocontainers/fastqc:0.11.9--0'
     tag "FastQC"
     label "test"
     publishDir "${params.outdir}", mode: 'copy',
@@ -17,7 +19,6 @@ process fastqc {
 
     script:
 	"""
-    echo $read1
-    echo $read2
+    fastqc --quiet --threads 4 $read1 $read2
 	"""
 }
