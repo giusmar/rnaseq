@@ -31,13 +31,12 @@ process align {
         --readFilesIn $trimmed_1 $trimmed_2 \
         --runThreadN 15 \
         --outFileNamePrefix ${sample_id}. \
-        --sjdbGTFfile $gtf \
         --outSAMattrRGline ID:${sample_id} 'SM:${sample_id}' \
         --twopassMode Basic \
         --outSAMtype BAM Unsorted --readFilesCommand zcat \
         --runRNGseed 0 --outFilterMultimapNmax 20 \
         --alignSJDBoverhangMin 1 --outSAMattributes NH HI AS NM MD \
-        --outSAMstrandField intronMotif --outReadsUnmapped Fastx
+        --outReadsUnmapped Fastx
 
     samtools sort -@ 15 -o ${sample_id}.sorted.bam -T ${sample_id}.sorted ${sample_id}.Aligned.out.bam
     samtools index -@ 15 ${sample_id}.sorted.bam
@@ -46,3 +45,4 @@ process align {
     samtools idxstats -@ 15 ${sample_id}.sorted.bam > ${sample_id}.sorted.bam.idxstats
     """
 }
+
