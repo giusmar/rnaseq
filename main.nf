@@ -26,7 +26,7 @@ workflow {
     fastqc(inputPairReads)
     umi_extract(inputPairReads)
     trimming(umi_extract.out.umi_extract_resutl)
-    align(trimming.out.trimming_result,genDir.collect(),genomefile.collect(),gtfile.collect())
+    align(trimming.out.trimming_result,genDir,genomefile,gtfile)
     umi_dedup(align.out.align_sorted_result)
     count(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
 }

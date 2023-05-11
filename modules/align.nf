@@ -47,4 +47,3 @@ process align {
     samtools idxstats -@ 15 ${sample_id}.sorted.bam > ${sample_id}.sorted.bam.idxstats
     """
 }
-
