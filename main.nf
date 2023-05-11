@@ -6,7 +6,7 @@ include { umi_extract } from './modules/umi_extract'
 include { trimming } from './modules/trimming'
 include { align } from './modules/align'
 include { umi_dedup } from './modules/umi_dedup'
-include { count } from './modules/count'
+include { count_exon; count_gene } from './modules/count'
 
 // check
 if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { exit 1, 'Input samplesheet not specified!' }
@@ -24,5 +24,6 @@ workflow {
     trimming(umi_extract.out.umi_extract_resutl)
     align(trimming.out.trimming_result,genDir.collect(),gtfile.collect())
     umi_dedup(align.out.align_sorted_result)
-    count(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
+    count_exon(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
+    count_gene(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
 }
