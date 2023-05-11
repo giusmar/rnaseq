@@ -16,6 +16,7 @@ inputPairReads = Channel.fromPath(input_ch)
                             .splitCsv( header:false, sep:',' )
                             .map( { row -> [sample_id = row[0], fastq1 = row[1], fastq2 = row[2], strand = row[3]] } )
 genDir = Channel.fromPath(params.genomedir)
+gtfile = Channel.fromPath(params.gtf)
 
 workflow {
     fastqc(inputPairReads)
