@@ -6,6 +6,7 @@ process count_exon {
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
            if (filename.indexOf("umi_dedup") >0)              "count/$filename"
+      else if (filename.indexOf("summary") >0)              "count/summary/$filename"
       else null
     }
 
@@ -16,6 +17,7 @@ process count_exon {
     output:
     path("counts.umi_dedup.exon.txt"), emit: counts
     path("counts.umi_dedup.exon.log"), emit: counts_log
+    path("*summary*"), emit: counts_summary
 
 
     script:
@@ -32,6 +34,7 @@ process count_gene {
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
            if (filename.indexOf("umi_dedup") >0)              "count/$filename"
+      else if (filename.indexOf("summary") >0)              "count/summary/$filename"
       else null
     }
 
@@ -42,6 +45,7 @@ process count_gene {
     output:
     path("counts.umi_dedup.gene.txt"), emit: counts
     path("counts.umi_dedup.gene.log"), emit: counts_log
+    path("*summary*"), emit: counts_summary
 
 
     script:
