@@ -16,6 +16,7 @@ process align {
     input:
     tuple val(sample_id), path(trimmed_1), path(trimmed_2)
     path(genDir)
+    path(gtf)
 
     output:
     tuple val(sample_id), path("${sample_id}.Aligned.out.bam"), emit: align_result
@@ -35,7 +36,9 @@ process align {
         --twopassMode Basic \
         --outSAMtype BAM Unsorted --readFilesCommand zcat \
         --runRNGseed 0 --outFilterMultimapNmax 20 \
+        --sjdbGTFfile $gtf
         --alignSJDBoverhangMin 1 --outSAMattributes NH HI AS NM MD \
+        --quantMode TranscriptomeSAM --quantTranscriptomeBan Singleend --outSAMstrandField intronMotif \
         --outReadsUnmapped Fastx
 
     samtools sort -@ 15 -o ${sample_id}.sorted.bam -T ${sample_id}.sorted ${sample_id}.Aligned.out.bam
