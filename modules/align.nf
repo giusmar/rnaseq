@@ -36,7 +36,7 @@ process align {
         --twopassMode Basic \
         --outSAMtype BAM Unsorted --readFilesCommand zcat \
         --runRNGseed 0 --outFilterMultimapNmax 20 \
-        --sjdbGTFfile $gtf
+        --sjdbGTFfile $gtf \
         --alignSJDBoverhangMin 1 --outSAMattributes NH HI AS NM MD \
         --quantMode TranscriptomeSAM --quantTranscriptomeBan Singleend --outSAMstrandField intronMotif \
         --outReadsUnmapped Fastx
