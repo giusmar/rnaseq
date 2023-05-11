@@ -16,8 +16,6 @@ process align {
     input:
     tuple val(sample_id), path(trimmed_1), path(trimmed_2)
     path(genDir)
-    path(genome)
-    path(gtf)
 
     output:
     tuple val(sample_id), path("${sample_id}.Aligned.out.bam"), emit: align_result
