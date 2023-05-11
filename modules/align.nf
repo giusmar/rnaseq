@@ -8,6 +8,7 @@ process align {
            if (filename.endsWith("sorted.bam"))              "STAR/align/$filename"
       else if (filename.endsWith("sorted.bam.bai"))               "STAR/align/$filename"
       else if (filename.indexOf("stat") > 0)               "STAR/stat/$filename"
+      else if (filename.indexOf("Unmapped") > 0)               "STAR/Unmapped/$filename"
       else null
     }
 
@@ -21,6 +22,7 @@ process align {
     tuple val(sample_id), path("${sample_id}.Aligned.out.bam"), emit: align_result
     tuple val(sample_id), path("${sample_id}.sorted.bam"), path("${sample_id}.sorted.bam.bai"), emit: align_sorted_result
     tuple val(sample_id), path("*stat*"), emit: align_stat_result
+    tuple val(sample_id), path("*Unmapped.out.mate*"), emit: align_unmapped
 
     script:
 	"""
@@ -31,11 +33,11 @@ process align {
         --outFileNamePrefix ${sample_id}. \
         --sjdbGTFfile $gtf \
         --outSAMattrRGline ID:${sample_id} 'SM:${sample_id}' \
-        --quantMode GeneCounts --twopassMode Basic \
+        --twopassMode Basic \
         --outSAMtype BAM Unsorted --readFilesCommand zcat \
         --runRNGseed 0 --outFilterMultimapNmax 20 \
         --alignSJDBoverhangMin 1 --outSAMattributes NH HI AS NM MD \
-        --quantTranscriptomeBan singleend --outSAMstrandField intronMotif
+        --outSAMstrandField intronMotif --outReadsUnmapped Fastx
 
     samtools sort -@ 15 -o ${sample_id}.sorted.bam -T ${sample_id}.sorted ${sample_id}.Aligned.out.bam
     samtools index -@ 15 ${sample_id}.sorted.bam
