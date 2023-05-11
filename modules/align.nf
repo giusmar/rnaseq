@@ -40,7 +40,7 @@ process align {
 
     samtools sort -@ 15 -o ${sample_id}.sorted.bam -T ${sample_id}.sorted ${sample_id}.Aligned.out.bam
     samtools index -@ 15 ${sample_id}.sorted.bam
-    samtools stats -@ 15 --reference $genome ${sample_id}.sorted.bam > ${sample_id}.sorted.bam.stats
+    samtools stats -@ 15 --reference $genDir/Genome ${sample_id}.sorted.bam > ${sample_id}.sorted.bam.stats
     samtools flagstat -@ 15 ${sample_id}.sorted.bam > ${sample_id}.sorted.bam.flagstat
     samtools idxstats -@ 15 ${sample_id}.sorted.bam > ${sample_id}.sorted.bam.idxstats
     """
