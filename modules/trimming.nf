@@ -20,7 +20,7 @@ process trimming {
     script:
 	"""
     ln -s $extract_1 ${sample_id}_1.fastq.gz
-    ln -s $extract_1 ${sample_id}_2.fastq.gz
+    ln -s $extract_2 ${sample_id}_2.fastq.gz
     trim_galore \
         --fastqc_args '-t 8' \
         --cores 8 \
