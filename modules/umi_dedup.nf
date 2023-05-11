@@ -3,6 +3,7 @@ process umi_dedup {
     machineType 'e2-standard-2'
     container 'quay.io/biocontainers/umi_tools:1.1.4--py38hbff2b2d_1'
     tag "deduplication"
+    disk "50 GB"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
            if (filename.endsWith("umi_dedup.sorted.bam"))              "umi/dedup/$filename"
