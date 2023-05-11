@@ -7,6 +7,7 @@ process align {
     saveAs: {filename ->
            if (filename.endsWith("sorted.bam"))              "STAR/align/$filename"
       else if (filename.endsWith("sorted.bam.bai"))               "STAR/align/$filename"
+      else if (filename.endsWith("out"))               "STAR/log/$filename"
       else if (filename.indexOf("stat") > 0)               "STAR/stat/$filename"
       else if (filename.indexOf("Unmapped") > 0)               "STAR/Unmapped/$filename"
       else null
@@ -23,6 +24,7 @@ process align {
     tuple val(sample_id), path("${sample_id}.sorted.bam"), path("${sample_id}.sorted.bam.bai"), emit: align_sorted_result
     tuple val(sample_id), path("*stat*"), emit: align_stat_result
     tuple val(sample_id), path("*Unmapped.out.mate*"), emit: align_unmapped
+    tuple val(sample_id), path("*out"), emit: align_log
 
     script:
 	"""
