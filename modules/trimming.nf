@@ -19,13 +19,11 @@ process trimming {
 
     script:
 	"""
-    ln -s $extract_1 ${sample_id}_1.fastq.gz
-    ln -s $extract_2 ${sample_id}_2.fastq.gz
     trim_galore \
         --fastqc_args '-t 8' \
         --cores 8 \
         --paired \
         --gzip \
-        ${sample_id}_1.fastq.gz ${sample_id}_2.fastq.gz
+        $extract_1 $extract_2
 	"""
 }
