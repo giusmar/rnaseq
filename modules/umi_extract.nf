@@ -15,7 +15,7 @@ process umi_extract {
 
     output:
     tuple val(sample_id), path("*extract_1*"), path("*extract_2*"), emit: umi_extract_resutl
-    //tuple val(sample_id), path("*umi_extract*"), emit: umi_extract_log
+    tuple val(sample_id), path("*umi_extract*"), emit: umi_extract_log
 
     script:
 	"""
