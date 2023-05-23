@@ -26,4 +26,5 @@ workflow {
     umi_dedup(align.out.align_sorted_result)
     count_exon(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
     count_gene(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
+    bigwig(umi_dedup.out.umi_dedup_result)
 }
