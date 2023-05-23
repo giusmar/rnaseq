@@ -26,5 +26,9 @@ workflow {
     umi_dedup(align.out.align_sorted_result)
     count_exon(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
     count_gene(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
-    bigwig(umi_dedup.out.umi_dedup_result)
+    //TODO: creare il bai in umi_dedup
+    //umi_stats(umi_dedup.out.umi_dedup_result,genDir.collect())
+    
+    //TODO: aggiungere bigwig
+    //TODO: aggiungere RSeQC
 }
