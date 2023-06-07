@@ -3,6 +3,7 @@ process umi_extract {
     machineType 'e2-standard-2'
     container 'quay.io/biocontainers/umi_tools:1.1.4--py38hbff2b2d_1'
     tag "umi_extract"
+    disk "100 GB"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
            if (filename.indexOf("_extract_") > 0)              "umi/extract/fastq/$filename"
@@ -15,7 +16,7 @@ process umi_extract {
 
     output:
     tuple val(sample_id), path("*extract_1*"), path("*extract_2*"), emit: umi_extract_resutl
-    //tuple val(sample_id), path("*umi_extract*"), emit: umi_extract_log
+    tuple val(sample_id), path("${sample_id}.umi_extract.log"), emit: umi_extract_log
 
     script:
 	"""

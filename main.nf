@@ -35,4 +35,3 @@ workflow {
         count_gene(align.out.align_result.collect{it[1]},gtfile)
     }
 } 
-    
