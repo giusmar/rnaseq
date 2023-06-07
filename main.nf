@@ -19,11 +19,20 @@ genDir = Channel.fromPath(params.genomedir)
 gtfile = Channel.fromPath(params.gtf)
 
 workflow {
-    fastqc(inputPairReads)
-    umi_extract(inputPairReads)
-    trimming(umi_extract.out.umi_extract_resutl)
-    align(trimming.out.trimming_result,genDir.collect(),gtfile.collect())
-    umi_dedup(align.out.align_sorted_result)
-    count_exon(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
-    count_gene(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
-}
+    if (params.thereisumi) {
+        fastqc(inputPairReads)
+        umi_extract(inputPairReads)
+        trimming(umi_extract.out.umi_extract_resutl)
+        align(trimming.out.trimming_result,genDir.collect(),gtfile.collect())
+        umi_dedup(align.out.align_sorted_result)
+        count_exon(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
+        count_gene(umi_dedup.out.umi_dedup_result.collect{it[1]},gtfile)
+    } else {
+        fastqc(inputPairReads)
+        trimming(inputPairReads)
+        align(trimming.out.trimming_result,genDir.collect(),gtfile.collect())
+        count_exon(align.out.align_result.collect{it[1]},gtfile)
+        count_gene(align.out.align_result.collect{it[1]},gtfile)
+    }
+} 
+    
