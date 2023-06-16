@@ -10,6 +10,9 @@ process trimming {
       else if (filename.indexOf("zip") > 0)              "trimming/fastqc/$filename"
       else null
     }
+    
+    when:
+    !params.skip_trimming
 
     input:
     tuple val(sample_id), path(extract_1), path(extract_2)

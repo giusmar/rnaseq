@@ -9,6 +9,9 @@ process bigwig {
       else null
     }
 
+    when:
+    !param.skip_bigwig
+
     input:
     tuple val(sample_id), path(umi_dedup_bam)
 

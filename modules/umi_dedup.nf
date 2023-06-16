@@ -9,6 +9,9 @@ process umi_dedup {
       else null
     }
 
+    when:
+    !params.skip_umi_dedup
+
     input:
     tuple val(sample_id), path(bam), path(bai)
 

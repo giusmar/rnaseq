@@ -10,6 +10,9 @@ process umi_stats {
       else null
     }
 
+    when:
+    !params.skip_umi_stats
+
     input:
     tuple val(sample_id), path(umi_dedup_bam)
     path(genDir)

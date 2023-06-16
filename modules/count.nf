@@ -10,6 +10,9 @@ process count_exon {
       else null
     }
 
+    when:
+    !params.skip_count_exon
+
     input:
     path(umi_dedup_bams)
     path(gtf)
@@ -37,6 +40,9 @@ process count_gene {
       else if (filename.indexOf("summary") >0)              "count/summary/$filename"
       else null
     }
+
+    when:
+    !params.skip_count_gene
 
     input:
     path(umi_dedup_bams)

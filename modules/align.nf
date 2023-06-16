@@ -13,6 +13,9 @@ process align {
       else null
     }
 
+    when:
+    !params.skip_align
+
     input:
     tuple val(sample_id), path(trimmed_1), path(trimmed_2)
     path(genDir)

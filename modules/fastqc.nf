@@ -10,6 +10,9 @@ process fastqc {
       else null
     }
 
+    when:
+    !params.skip_fastqc
+
     input:
     tuple val(sample_id), path(read1), path(read2), val(strand)
 

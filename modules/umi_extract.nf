@@ -11,6 +11,9 @@ process umi_extract {
       else null
     }
 
+    when:
+    !params.skip_umi_extract
+
     input:
     tuple val(sample_id), path(read1), path(read2), val(strand)
 
