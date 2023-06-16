@@ -25,7 +25,7 @@ process count_exon {
 
     script:
 	"""
-    featureCounts -T 15 -s 1 -p -a $gtf -t 'exon' -o counts.umi_dedup.exon.txt $umi_dedup_bams 2> counts.umi_dedup.exon.log
+    featureCounts -T 15 -s $params.strand -p -a $gtf -t 'exon' -o counts.umi_dedup.exon.txt $umi_dedup_bams 2> counts.umi_dedup.exon.log
 	"""
 }
 
@@ -56,6 +56,6 @@ process count_gene {
 
     script:
 	"""
-    featureCounts -T 15 -s 1 -p -a $gtf -t 'gene' -o counts.umi_dedup.gene.txt $umi_dedup_bams 2> counts.umi_dedup.gene.log
+    featureCounts -T 15 -s $params.strand -p -a $gtf -t 'gene' -o counts.umi_dedup.gene.txt $umi_dedup_bams 2> counts.umi_dedup.gene.log
 	"""
 }
