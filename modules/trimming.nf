@@ -29,6 +29,6 @@ process trimming {
         --cores 8 \
         --gzip \
         --paired \
-        $extract1 $extract_2
+        $extract_1 $extract_2
 	"""
 }
