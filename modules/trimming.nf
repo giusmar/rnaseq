@@ -19,15 +19,16 @@ process trimming {
 
     output:
     tuple val(sample_id), path("*1.fq.gz"), path("*2.fq.gz*"), emit: trimming_result
+    tuple val(sample_id), path("*html"), path("*zip"), emit: trimming_fastqc
 
     script:
-    def pd = params.paired ? '--paired ${extract1} ${extract_2}' : '$extract1'
 	"""
     trim_galore \
         --fastqc \
         --fastqc_args '-t 8' \
         --cores 8 \
         --gzip \
-        $pd
+        --paired \
+        $extract1 $extract_2
 	"""
 }

@@ -20,8 +20,7 @@ process fastqc {
     path("*_fastqc.{zip,html}"), emit: fastqc_resutl
 
     script:
-    def pd = params.paired ? '$read1 $read2' : '$read1'
-	"""
+    """
     fastqc --quiet --threads 4 $read1 $read2
 	"""
 }
