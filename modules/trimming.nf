@@ -18,12 +18,13 @@ process trimming {
     tuple val(sample_id), path("*1.fq.gz"), path("*2.fq.gz*"), emit: trimming_result
 
     script:
+    def pd = params.paired ? '--paired ${extract1} ${extract_2}' : '$extract1'
 	"""
     trim_galore \
+        --fastqc \
         --fastqc_args '-t 8' \
         --cores 8 \
-        --paired \
         --gzip \
-        $extract_1 $extract_2
+        $pd
 	"""
 }
