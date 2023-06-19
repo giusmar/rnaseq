@@ -24,8 +24,9 @@ process count_exon {
 
 
     script:
+    def umi = params.thereisumi ? 'umi_dedup.' : '.'
 	"""
-    featureCounts -T 15 -s $params.strand -p -a $gtf -t 'exon' -o counts.umi_dedup.exon.txt $umi_dedup_bams 2> counts.umi_dedup.exon.log
+    featureCounts -T 15 -s $params.strand -p -a $gtf -t 'exon' -o counts.${umi}exon.txt $umi_dedup_bams 2> counts.${umi}exon.log
 	"""
 }
 
@@ -55,7 +56,8 @@ process count_gene {
 
 
     script:
+    def umi = params.thereisumi ? 'umi_dedup.' : '.'
 	"""
-    featureCounts -T 15 -s $params.strand -p -a $gtf -t 'gene' -o counts.umi_dedup.gene.txt $umi_dedup_bams 2> counts.umi_dedup.gene.log
+    featureCounts -T 15 -s $params.strand -p -a $gtf -t 'gene' -o counts.${umi}gene.txt $umi_dedup_bams 2> counts.${umi}gene.log
 	"""
 }
