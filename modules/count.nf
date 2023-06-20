@@ -18,8 +18,8 @@ process count_exon {
     path(gtf)
 
     output:
-    path("counts.umi_dedup.exon.txt"), emit: counts
-    path("counts.umi_dedup.exon.log"), emit: counts_log
+    path("counts*exon.txt"), emit: counts
+    path("counts*exon.log"), emit: counts_log
     path("*summary*"), emit: counts_summary
 
 
@@ -50,8 +50,8 @@ process count_gene {
     path(gtf)
 
     output:
-    path("counts.umi_dedup.gene.txt"), emit: counts
-    path("counts.umi_dedup.gene.log"), emit: counts_log
+    path("counts*gene.txt"), emit: counts
+    path("counts*gene.log"), emit: counts_log
     path("*summary*"), emit: counts_summary
 
 
