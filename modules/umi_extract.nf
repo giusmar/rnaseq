@@ -22,10 +22,11 @@ process umi_extract {
     tuple val(sample_id), path("${sample_id}.umi_extract.log"), emit: umi_extract_log
 
     script:
+    def pattern = params.umi_pattern
 	"""
     umi_tools extract \
         -I $read1 --read2-in=$read2 \
         -S ${sample_id}.umi_extract_1.fastq.gz --read2-out=${sample_id}.umi_extract_2.fastq.gz \
-        --extract-method=string --bc-pattern='NNNNNNNNNNNN' > ${sample_id}.umi_extract.log
+        --extract-method=string --bc-pattern=$pattern > ${sample_id}.umi_extract.log
 	"""
 }
