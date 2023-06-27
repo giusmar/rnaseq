@@ -21,6 +21,8 @@ process fastqc {
 
     script:
     """
-    fastqc --quiet --threads 4 $read1 $read2
+    ln -s ${sample_id}_R1.fastq.gz $read1
+    ln -s ${sample_id}_R2.fastq.gz $read2
+    fastqc --quiet --threads 4 ${sample_id}_R1.fastq.gz ${sample_id}_R2.fastq.gz
 	"""
 }
