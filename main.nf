@@ -31,7 +31,7 @@ workflow {
         fastqc(inputPairReads)
         trimming(inputPairReads)
         align(trimming.out.trimming_result,genDir.collect(),gtfile.collect())
-        count_exon(align.out.align_result.collect{it[1]},gtfile)
-        count_gene(align.out.align_result.collect{it[1]},gtfile)
+        count_exon(align.out.align_sorted_result.collect{it[1]},gtfile)
+        count_gene(align.out.align_sorted_result.collect{it[1]},gtfile)
     }
 } 

@@ -5,7 +5,7 @@ process count_exon {
     tag "exom"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
-           if (filename.indexOf("umi_dedup") >0)              "count/$filename"
+           if (filename.indexOf("exon") >0)              "count/$filename"
       else if (filename.indexOf("summary") >0)              "count/summary/$filename"
       else null
     }
@@ -37,7 +37,7 @@ process count_gene {
     tag "gene"
     publishDir "${params.outdir}", mode: 'copy',
     saveAs: {filename ->
-           if (filename.indexOf("umi_dedup") >0)              "count/$filename"
+           if (filename.indexOf("gene") >0)              "count/$filename"
       else if (filename.indexOf("summary") >0)              "count/summary/$filename"
       else null
     }
