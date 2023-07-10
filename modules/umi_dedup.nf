@@ -1,6 +1,6 @@
 process umi_dedup {
     debug true
-    machineType 'e2-standard-2'
+    machineType 'e2-standard-8'
     container 'quay.io/biocontainers/umi_tools:1.1.4--py38hbff2b2d_1'
     tag "deduplication"
     publishDir "${params.outdir}", mode: 'copy',
